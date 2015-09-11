@@ -508,7 +508,7 @@ std::ostream& operator<<(std::ostream& stream, const jsonxx::Object& v) {
 
 
 namespace jsonxx {
-namespace {
+namespace anon {
 
 typedef unsigned char byte;
 
@@ -832,7 +832,7 @@ const char *defrootattrib[] = {
 } // namespace jsonxx::anon
 
 std::string Object::json() const {
-    using namespace json;
+    using namespace anon::json;
 
     jsonxx::Value v;
     v.object_value_ = const_cast<jsonxx::Object*>(this);
@@ -845,7 +845,7 @@ std::string Object::json() const {
 }
 
 std::string Object::xml( unsigned format, const std::string &header, const std::string &attrib ) const {
-    using namespace xml;
+    using namespace anon::xml;
     JSONXX_ASSERT( format == jsonxx::JSONx || format == jsonxx::JXML || format == jsonxx::JXMLex || format == jsonxx::TaggedXML );
 
     jsonxx::Value v;
@@ -859,7 +859,7 @@ std::string Object::xml( unsigned format, const std::string &header, const std::
 }
 
 std::string Array::json() const {
-    using namespace json;
+    using namespace anon::json;
 
     jsonxx::Value v;
     v.array_value_ = const_cast<jsonxx::Array*>(this);
@@ -872,7 +872,7 @@ std::string Array::json() const {
 }
 
 std::string Array::xml( unsigned format, const std::string &header, const std::string &attrib ) const {
-    using namespace xml;
+    using namespace anon::xml;
     JSONXX_ASSERT( format == jsonxx::JSONx || format == jsonxx::JXML || format == jsonxx::JXMLex || format == jsonxx::TaggedXML );
 
     jsonxx::Value v;
@@ -946,7 +946,7 @@ std::string reformat( const std::string &input ) {
 }
 
 std::string xml( std::istream &input, unsigned format ) {
-    using namespace xml;
+    using namespace anon::xml;
     JSONXX_ASSERT( format == jsonxx::JSONx || format == jsonxx::JXML || format == jsonxx::JXMLex || format == jsonxx::TaggedXML );
 
     // trim non-printable chars
